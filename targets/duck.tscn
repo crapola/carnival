@@ -1,0 +1,22 @@
+[gd_scene load_steps=5 format=3 uid="uid://thls2ox5iy3k"]
+
+[ext_resource type="Texture2D" uid="uid://yfyo3uxi2t0q" path="res://textures/duck.tres" id="1_jbxop"]
+[ext_resource type="Script" path="res://targets/duck.gd" id="2_qe0od"]
+[ext_resource type="PackedScene" uid="uid://c5wqh56dlt0qf" path="res://target_hit_box.tscn" id="3_2kwjv"]
+[ext_resource type="PackedScene" uid="uid://bqtigdng640i5" path="res://duck_explosion.tscn" id="3_cj263"]
+
+[node name="Duck" type="Sprite2D"]
+texture = ExtResource("1_jbxop")
+region_rect = Rect2(0, 0, 64, 64)
+script = ExtResource("2_qe0od")
+points = 7
+explosion = ExtResource("3_cj263")
+
+[node name="HitBox" parent="." instance=ExtResource("3_2kwjv")]
+position = Vector2(0, 8)
+
+[node name="Timer" type="Timer" parent="."]
+process_callback = 0
+autostart = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

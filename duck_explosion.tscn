@@ -1,0 +1,20 @@
+[gd_scene load_steps=6 format=3 uid="uid://bqtigdng640i5"]
+
+[ext_resource type="PackedScene" uid="uid://car1s1sj3qfad" path="res://explosion.tscn" id="1_vvexe"]
+[ext_resource type="AudioStream" uid="uid://b41yl3231wg74" path="res://sounds/quack.wav" id="2_72d8s"]
+[ext_resource type="AudioStream" uid="uid://bbrc4ntfyix1x" path="res://sounds/hit1.wav" id="3_3xmao"]
+[ext_resource type="AudioStream" uid="uid://h6atwd6cwvme" path="res://sounds/hit2.wav" id="4_vmpov"]
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_b432n"]
+streams_count = 3
+stream_0/stream = ExtResource("2_72d8s")
+stream_0/weight = 1.0
+stream_1/stream = ExtResource("3_3xmao")
+stream_1/weight = 2.0
+stream_2/stream = ExtResource("4_vmpov")
+stream_2/weight = 2.0
+
+[node name="Explosion" instance=ExtResource("1_vvexe")]
+
+[node name="AudioStreamPlayer" parent="." index="2"]
+stream = SubResource("AudioStreamRandomizer_b432n")

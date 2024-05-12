@@ -1,0 +1,13 @@
+[gd_scene load_steps=4 format=3 uid="uid://6d5grgue36s"]
+
+[ext_resource type="Texture2D" uid="uid://dysm60ubdbp6a" path="res://textures/owl.tres" id="1_0ocej"]
+[ext_resource type="Script" path="res://target.gd" id="2_o8jen"]
+[ext_resource type="PackedScene" uid="uid://c5wqh56dlt0qf" path="res://target_hit_box.tscn" id="3_yx2ax"]
+
+[node name="Owl" type="Sprite2D"]
+texture = ExtResource("1_0ocej")
+region_rect = Rect2(0, 0, 64, 64)
+script = ExtResource("2_o8jen")
+points = 5
+
+[node name="HitBox" parent="." instance=ExtResource("3_yx2ax")]

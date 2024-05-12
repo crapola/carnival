@@ -1,0 +1,39 @@
+[gd_scene load_steps=5 format=3 uid="uid://dmmvd6obyisf1"]
+
+[ext_resource type="Texture2D" uid="uid://cdjfudsxx0wlo" path="res://textures/square.tres" id="1_a3b8g"]
+[ext_resource type="Script" path="res://target.gd" id="2_put2w"]
+[ext_resource type="PackedScene" uid="uid://c5wqh56dlt0qf" path="res://target_hit_box.tscn" id="3_8msuu"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vlxad"]
+size = Vector2(50, 50)
+
+[node name="Letter" type="Sprite2D" node_paths=PackedStringArray("letter")]
+self_modulate = Color(0.5, 0.5, 0.5, 1)
+texture = ExtResource("1_a3b8g")
+region_rect = Rect2(0, 0, 64, 64)
+script = ExtResource("2_put2w")
+letter = NodePath("Label")
+
+[node name="HitBox" parent="." instance=ExtResource("3_8msuu")]
+
+[node name="CollisionShape2D" parent="HitBox" index="0"]
+shape = SubResource("RectangleShape2D_vlxad")
+
+[node name="Label" type="Label" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -37.5
+offset_top = -43.5
+offset_right = -26.5
+offset_bottom = -20.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 64
+text = "A"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[editable path="HitBox"]

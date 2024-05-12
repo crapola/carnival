@@ -1,0 +1,228 @@
+[gd_scene load_steps=15 format=3 uid="uid://cergoxvi8r036"]
+
+[ext_resource type="Script" path="res://main.gd" id="1_22y8y"]
+[ext_resource type="PackedScene" uid="uid://dg23oykyaltpq" path="res://gun.tscn" id="3_mbvn6"]
+[ext_resource type="Script" path="res://message.gd" id="3_q80mu"]
+[ext_resource type="PackedScene" uid="uid://1mpva6pe0h45" path="res://belt.tscn" id="4_afe60"]
+[ext_resource type="Theme" uid="uid://c7w0cwu12rlr5" path="res://theme.tres" id="4_ndewe"]
+[ext_resource type="Script" path="res://label_integer.gd" id="4_rd3fu"]
+[ext_resource type="PackedScene" uid="uid://crfy8qplyjehs" path="res://wheel.tscn" id="5_s4il3"]
+[ext_resource type="PackedScene" uid="uid://bysvnij6ql1u3" path="res://bonus.tscn" id="8_k4qq3"]
+[ext_resource type="PackedScene" uid="uid://suygw77ilrra" path="res://menu.tscn" id="9_e4f0a"]
+
+[sub_resource type="Gradient" id="Gradient_u415r"]
+interpolation_mode = 2
+colors = PackedColorArray(1, 1, 1, 0, 0, 0, 0, 0.25098)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_s6ai1"]
+gradient = SubResource("Gradient_u415r")
+width = 512
+height = 512
+fill = 1
+fill_from = Vector2(0.5, 0)
+fill_to = Vector2(0.5, 1)
+
+[sub_resource type="Animation" id="Animation_srpjn"]
+resource_name = "throb"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(1.1, 1.1), Vector2(1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ocegh"]
+_data = {
+"throb": SubResource("Animation_srpjn")
+}
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hfq34"]
+size = Vector2(600, 16)
+
+[node name="Main" type="Node"]
+script = ExtResource("1_22y8y")
+metadata/_edit_vertical_guides_ = [300.0, 32.0, 568.0, 200.0, 400.0]
+metadata/_edit_horizontal_guides_ = [400.0, 16.0, 96.0]
+
+[node name="Gradient" type="TextureRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("GradientTexture2D_s6ai1")
+metadata/_edit_lock_ = true
+
+[node name="CanvasLayerUI" type="CanvasLayer" parent="."]
+layer = 2
+
+[node name="CenterMessage" type="Label" parent="CanvasLayerUI"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(500, 200)
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -250.0
+offset_top = -100.0
+offset_right = 250.0
+offset_bottom = 100.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(250, 100)
+theme = ExtResource("4_ndewe")
+theme_override_font_sizes/font_size = 64
+text = "Hello"
+horizontal_alignment = 1
+vertical_alignment = 1
+script = ExtResource("3_q80mu")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="CanvasLayerUI/CenterMessage"]
+libraries = {
+"": SubResource("AnimationLibrary_ocegh")
+}
+autoplay = "throb"
+
+[node name="Message" type="Label" parent="CanvasLayerUI"]
+unique_name_in_owner = true
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 400.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("4_ndewe")
+theme_override_colors/font_color = Color(0.745098, 0.745098, 0.745098, 1)
+text = "Message!"
+horizontal_alignment = 1
+vertical_alignment = 1
+script = ExtResource("3_q80mu")
+
+[node name="Score" type="Label" parent="CanvasLayerUI"]
+unique_name_in_owner = true
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -268.0
+offset_top = 2.0
+offset_right = -100.0
+offset_bottom = 96.0
+grow_horizontal = 2
+theme = ExtResource("4_ndewe")
+theme_override_font_sizes/font_size = 32
+text = "0"
+horizontal_alignment = 1
+vertical_alignment = 1
+script = ExtResource("4_rd3fu")
+
+[node name="Bonus" parent="CanvasLayerUI" instance=ExtResource("8_k4qq3")]
+unique_name_in_owner = true
+anchors_preset = 0
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_left = 400.0
+offset_right = 568.0
+offset_bottom = 96.0
+grow_horizontal = 1
+grow_vertical = 1
+
+[node name="CenterContainer" type="CenterContainer" parent="CanvasLayerUI"]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -32.0
+offset_right = 32.0
+offset_bottom = 34.0
+grow_horizontal = 2
+metadata/_edit_group_ = true
+
+[node name="FlagPoints" type="Label" parent="CanvasLayerUI/CenterContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 1
+theme = ExtResource("4_ndewe")
+theme_override_colors/font_color = Color(0.745098, 0.745098, 0.745098, 1)
+text = "50
+"
+horizontal_alignment = 1
+vertical_alignment = 1
+script = ExtResource("4_rd3fu")
+
+[node name="Menu" parent="CanvasLayerUI" instance=ExtResource("9_e4f0a")]
+visible = false
+offset_top = -59.5
+offset_bottom = 59.5
+
+[node name="Start" parent="CanvasLayerUI/Menu/VBoxContainer" index="0"]
+visible = false
+
+[node name="Continue" parent="CanvasLayerUI/Menu/VBoxContainer" index="1"]
+visible = true
+
+[node name="Quit" type="Button" parent="CanvasLayerUI/Menu/VBoxContainer" index="4"]
+layout_mode = 2
+text = "Quit
+"
+
+[node name="Wheel" parent="." instance=ExtResource("5_s4il3")]
+position = Vector2(300, 16)
+speed = 2.0
+
+[node name="Gun" parent="." instance=ExtResource("3_mbvn6")]
+position = Vector2(300, 700)
+
+[node name="Obstacle" type="Area2D" parent="."]
+position = Vector2(300, 0)
+collision_layer = 4
+collision_mask = 2
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Obstacle"]
+shape = SubResource("RectangleShape2D_hfq34")
+
+[node name="Mask" type="Control" parent="."]
+visibility_layer = 2
+clip_contents = true
+layout_mode = 3
+anchors_preset = 10
+anchor_right = 1.0
+offset_left = 32.0
+offset_top = 64.0
+offset_right = -32.0
+offset_bottom = 384.0
+grow_horizontal = 2
+metadata/_edit_lock_ = true
+metadata/_edit_group_ = true
+
+[node name="Belt" parent="Mask" instance=ExtResource("4_afe60")]
+unique_name_in_owner = true
+position = Vector2(-56, 64)
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 4.0
+autostart = true
+
+[node name="RankTimer" type="Timer" parent="."]
+wait_time = 30.0
+autostart = true
+
+[connection signal="completed" from="CanvasLayerUI/Bonus" to="." method="on_bonus_completed"]
+[connection signal="pressed" from="CanvasLayerUI/Menu/VBoxContainer/Quit" to="." method="quit"]
+[connection signal="target_exiting_tree" from="Wheel" to="." method="on_target_exiting_tree"]
+[connection signal="ammo_depleted" from="Gun" to="." method="game_over" flags=7]
+[connection signal="area_entered" from="Obstacle" to="." method="on_obstacle_hit"]
+[connection signal="target_exiting_tree" from="Mask/Belt" to="." method="on_target_exiting_tree"]
+[connection signal="timeout" from="Timer" to="." method="on_timer_timeout"]
+[connection signal="timeout" from="RankTimer" to="." method="rank_increase"]
+
+[editable path="CanvasLayerUI/Menu"]
+[editable path="Mask/Belt"]

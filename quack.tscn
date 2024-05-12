@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://ca58so331wvod"]
+
+[ext_resource type="AudioStream" uid="uid://b41yl3231wg74" path="res://sounds/quack.wav" id="1_oatrw"]
+
+[node name="Quack" type="AudioStreamPlayer2D"]
+top_level = true
+stream = ExtResource("1_oatrw")
+autoplay = true
+bus = &"Sounds"
+
+[connection signal="finished" from="." to="." method="queue_free"]

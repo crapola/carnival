@@ -1,0 +1,68 @@
+[gd_scene load_steps=7 format=3 uid="uid://dbrxlma41o3uy"]
+
+[ext_resource type="Texture2D" uid="uid://dvdymcan7hffk" path="res://icon.svg" id="1_3cpsy"]
+[ext_resource type="Texture2D" uid="uid://b6pdncpcfxhcj" path="res://title.svg" id="2_0tqh3"]
+[ext_resource type="PackedScene" uid="uid://dnacvq4sec7iv" path="res://high_scores.tscn" id="4_v1tl1"]
+[ext_resource type="PackedScene" uid="uid://suygw77ilrra" path="res://menu.tscn" id="5_ak6ys"]
+
+[sub_resource type="Gradient" id="Gradient_avtde"]
+interpolation_mode = 2
+colors = PackedColorArray(1, 1, 1, 0, 0, 0, 0, 0.25098)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_vixdw"]
+gradient = SubResource("Gradient_avtde")
+width = 512
+height = 512
+fill = 1
+fill_from = Vector2(0.5, 0)
+fill_to = Vector2(0.5, 1)
+
+[node name="Title" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Gradient" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("GradientTexture2D_vixdw")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.25
+anchor_right = 0.5
+anchor_bottom = 0.25
+offset_left = -256.0
+offset_top = -128.0
+offset_right = 256.0
+offset_bottom = 128.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_0tqh3")
+stretch_mode = 5
+metadata/_edit_lock_ = true
+
+[node name="Icon" type="Sprite2D" parent="."]
+position = Vector2(350, 55)
+texture = ExtResource("1_3cpsy")
+
+[node name="Menu" parent="." instance=ExtResource("5_ak6ys")]
+layout_mode = 1
+
+[node name="HighScores" parent="." instance=ExtResource("4_v1tl1")]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.7
+grow_horizontal = 1
+grow_vertical = 1
+
+[editable path="Menu"]

@@ -1,0 +1,80 @@
+[gd_scene load_steps=3 format=3 uid="uid://dnacvq4sec7iv"]
+
+[ext_resource type="Script" path="res://high_scores.gd" id="1_lobgm"]
+[ext_resource type="Theme" uid="uid://c7w0cwu12rlr5" path="res://theme.tres" id="2_eyj02"]
+
+[node name="HighScores" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("2_eyj02")
+script = ExtResource("1_lobgm")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 62.0
+grow_horizontal = 2
+metadata/_edit_lock_ = true
+
+[node name="HighScore" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme = ExtResource("2_eyj02")
+theme_override_colors/font_color = Color(0.745098, 0.745098, 0.745098, 1)
+text = "High Score"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Score" type="Label" parent="VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 4
+theme = ExtResource("2_eyj02")
+theme_override_constants/outline_size = 16
+theme_override_font_sizes/font_size = 48
+text = "12345"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_constants/separation = 16
+
+[node name="Stage" type="Label" parent="VBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+size_flags_horizontal = 4
+theme = ExtResource("2_eyj02")
+theme_override_colors/font_color = Color(0.745098, 0.745098, 0.745098, 1)
+theme_override_font_sizes/font_size = 12
+text = "Stage 0"
+horizontal_alignment = 2
+
+[node name="Time" type="Label" parent="VBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 4
+theme = ExtResource("2_eyj02")
+theme_override_colors/font_color = Color(0.745098, 0.745098, 0.745098, 1)
+theme_override_font_sizes/font_size = 12
+text = "01:23:45"
+
+[node name="Reset" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -150.0
+offset_bottom = 37.0
+grow_horizontal = 0
+text = "Reset profile"
+
+[connection signal="pressed" from="Reset" to="." method="_reset"]

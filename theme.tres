@@ -1,0 +1,9 @@
+[gd_resource type="Theme" load_steps=2 format=3 uid="uid://c7w0cwu12rlr5"]
+
+[ext_resource type="FontFile" uid="uid://divqory005v8c" path="res://fonts/poetsen_one/PoetsenOne-Regular.ttf" id="1_rnifp"]
+
+[resource]
+default_font_size = 24
+Control/colors/font_outline_color = Color(0, 0, 0, 1)
+Control/constants/outline_size = 8
+Control/fonts/font = ExtResource("1_rnifp")

@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://1mpva6pe0h45"]
+
+[ext_resource type="Script" path="res://belt.gd" id="1_agw2o"]
+
+[sub_resource type="Curve2D" id="Curve2D_jt3r0"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 768, 0, 0, 0, 0, 0, 768, 64, 0, 0, 0, 0, 0, 64, 0, 0, 0, 0, 0, 128, 0, 0, 0, 0, 768, 128)
+}
+point_count = 6
+
+[node name="Belt" type="Node2D"]
+script = ExtResource("1_agw2o")
+
+[node name="Path2D" type="Path2D" parent="."]
+curve = SubResource("Curve2D_jt3r0")

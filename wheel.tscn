@@ -1,0 +1,22 @@
+[gd_scene load_steps=4 format=3 uid="uid://crfy8qplyjehs"]
+
+[ext_resource type="Texture2D" uid="uid://bnox1ttwfmfbd" path="res://textures/circle_yellow.tres" id="1_f7y7f"]
+[ext_resource type="Texture2D" uid="uid://br4bdmunq3rkq" path="res://textures/circle_black.tres" id="1_lji62"]
+[ext_resource type="Script" path="res://wheel.gd" id="1_waeiu"]
+
+[node name="Wheel" type="Node2D"]
+script = ExtResource("1_waeiu")
+
+[node name="Flags" type="Node2D" parent="."]
+metadata/_edit_lock_ = true
+
+[node name="Center" type="Node2D" parent="."]
+metadata/_edit_group_ = true
+metadata/_edit_lock_ = true
+
+[node name="Yellow" type="Sprite2D" parent="Center"]
+scale = Vector2(1.25, 1.25)
+texture = ExtResource("1_f7y7f")
+
+[node name="Black" type="Sprite2D" parent="Center"]
+texture = ExtResource("1_lji62")

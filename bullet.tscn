@@ -1,0 +1,37 @@
+[gd_scene load_steps=6 format=3 uid="uid://p756gt7rsd8j"]
+
+[ext_resource type="Script" path="res://bullet.gd" id="1_q3wie"]
+[ext_resource type="Texture2D" uid="uid://cvxrdwr4kkeef" path="res://textures/circle_red.tres" id="2_gk5hr"]
+[ext_resource type="Texture2D" uid="uid://bnox1ttwfmfbd" path="res://textures/circle_yellow.tres" id="3_tm88b"]
+[ext_resource type="Texture2D" uid="uid://b0ap52bhks28d" path="res://textures/circle_white.tres" id="4_ou46y"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_lfyoi"]
+radius = 32.0
+
+[node name="Bullet" type="Node2D"]
+top_level = true
+script = ExtResource("1_q3wie")
+
+[node name="Red" type="Sprite2D" parent="."]
+texture = ExtResource("2_gk5hr")
+region_rect = Rect2(128, 0, 64, 64)
+
+[node name="Yellow" type="Sprite2D" parent="."]
+scale = Vector2(0.75, 0.75)
+texture = ExtResource("3_tm88b")
+region_rect = Rect2(64, 0, 64, 64)
+
+[node name="White" type="Sprite2D" parent="."]
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("4_ou46y")
+region_rect = Rect2(0, 0, 64, 64)
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 2
+collision_mask = 5
+priority = 1
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_lfyoi")
+
+[connection signal="area_entered" from="Area2D" to="." method="on_hit"]

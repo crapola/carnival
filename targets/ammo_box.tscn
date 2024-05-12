@@ -1,0 +1,21 @@
+[gd_scene load_steps=5 format=3 uid="uid://d1wbgvagak30u"]
+
+[ext_resource type="Texture2D" uid="uid://dxq7ha0kiqtdk" path="res://textures/ten.tres" id="1_47fej"]
+[ext_resource type="Script" path="res://target.gd" id="2_purke"]
+[ext_resource type="PackedScene" uid="uid://c5wqh56dlt0qf" path="res://target_hit_box.tscn" id="3_61lt1"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vlxad"]
+size = Vector2(50, 50)
+
+[node name="AmmoBox" type="Sprite2D"]
+texture = ExtResource("1_47fej")
+region_rect = Rect2(0, 0, 64, 64)
+script = ExtResource("2_purke")
+ammo = 10
+
+[node name="HitBox" parent="." instance=ExtResource("3_61lt1")]
+
+[node name="CollisionShape2D" parent="HitBox" index="0"]
+shape = SubResource("RectangleShape2D_vlxad")
+
+[editable path="HitBox"]

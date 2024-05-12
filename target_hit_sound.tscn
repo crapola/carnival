@@ -1,0 +1,19 @@
+[gd_scene load_steps=4 format=3 uid="uid://b0vmw3u5ieevr"]
+
+[ext_resource type="AudioStream" uid="uid://bbrc4ntfyix1x" path="res://sounds/hit1.wav" id="1_ojbgt"]
+[ext_resource type="AudioStream" uid="uid://h6atwd6cwvme" path="res://sounds/hit2.wav" id="2_66gbg"]
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_ilu0s"]
+playback_mode = 1
+random_pitch = 1.05
+random_volume_offset_db = 2.0
+streams_count = 2
+stream_0/stream = ExtResource("1_ojbgt")
+stream_0/weight = 1.0
+stream_1/stream = ExtResource("2_66gbg")
+stream_1/weight = 1.0
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer"]
+stream = SubResource("AudioStreamRandomizer_ilu0s")
+volume_db = -10.0
+bus = &"Sounds"

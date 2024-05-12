@@ -1,0 +1,17 @@
+[gd_scene load_steps=5 format=3 uid="uid://b3e3q4tagn8b"]
+
+[ext_resource type="Texture2D" uid="uid://e8nce3yicxls" path="res://textures/flag.tres" id="1_k5lh3"]
+[ext_resource type="Script" path="res://target.gd" id="2_otlp7"]
+[ext_resource type="PackedScene" uid="uid://b8l40l6rg0rex" path="res://flag_drop.tscn" id="3_ctnbq"]
+[ext_resource type="PackedScene" uid="uid://c5wqh56dlt0qf" path="res://target_hit_box.tscn" id="3_gx6ww"]
+
+[node name="Flag" type="Sprite2D"]
+rotation = 1.5708
+texture = ExtResource("1_k5lh3")
+offset = Vector2(20.5, -28.5)
+region_rect = Rect2(0, 0, 64, 64)
+script = ExtResource("2_otlp7")
+explosion = ExtResource("3_ctnbq")
+
+[node name="HitBox" parent="." instance=ExtResource("3_gx6ww")]
+position = Vector2(15.9999, -32.0001)

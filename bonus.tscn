@@ -1,0 +1,78 @@
+[gd_scene load_steps=5 format=3 uid="uid://bysvnij6ql1u3"]
+
+[ext_resource type="Theme" uid="uid://c7w0cwu12rlr5" path="res://theme.tres" id="1_e3r8v"]
+[ext_resource type="Script" path="res://bonus.gd" id="2_sdh4q"]
+
+[sub_resource type="Animation" id="Animation_al107"]
+resource_name = "flash"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.8),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_0kj58"]
+_data = {
+"flash": SubResource("Animation_al107")
+}
+
+[node name="Bonus" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_e3r8v")
+script = ExtResource("2_sdh4q")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -64.0
+offset_top = -38.0
+offset_right = 64.0
+offset_bottom = 38.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 2
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+
+[node name="Letters" type="RichTextLabel" parent="MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme = ExtResource("1_e3r8v")
+bbcode_enabled = true
+text = "BONUS"
+fit_content = true
+autowrap_mode = 0
+
+[node name="Message" type="Label" parent="MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
+modulate = Color(1, 1, 1, 0.705882)
+layout_mode = 2
+text = "No bonus"
+horizontal_alignment = 1
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="MarginContainer/VBoxContainer/Message"]
+unique_name_in_owner = true
+libraries = {
+"": SubResource("AnimationLibrary_0kj58")
+}
+speed_scale = 2.0

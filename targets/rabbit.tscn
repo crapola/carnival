@@ -1,0 +1,20 @@
+[gd_scene load_steps=5 format=3 uid="uid://boovprvlpg12v"]
+
+[ext_resource type="Texture2D" uid="uid://bxx0sk8lsvjmy" path="res://textures/rabbit.tres" id="1_6lw0g"]
+[ext_resource type="Script" path="res://target.gd" id="2_bfv7g"]
+[ext_resource type="PackedScene" uid="uid://c5wqh56dlt0qf" path="res://target_hit_box.tscn" id="3_ywuo8"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_b35yt"]
+
+[node name="Rabbit" type="Sprite2D"]
+texture = ExtResource("1_6lw0g")
+region_rect = Rect2(0, 0, 64, 64)
+script = ExtResource("2_bfv7g")
+points = 5
+
+[node name="HitBox" parent="." instance=ExtResource("3_ywuo8")]
+position = Vector2(4, 11)
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="HitBox"]
+position = Vector2(-24, -12)
+shape = SubResource("CircleShape2D_b35yt")
