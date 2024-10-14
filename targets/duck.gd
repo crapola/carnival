@@ -11,7 +11,6 @@ var velocity:Vector2=Vector2(0,200)
 @onready var timer:=$Timer as Timer
 
 func _ready()->void:
-	super._ready()
 	set_physics_process(false)
 
 func _on_timer_timeout()->void:

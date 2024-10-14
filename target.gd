@@ -14,18 +14,17 @@ extends Sprite2D
 ## Explosion scene.
 @export var explosion:PackedScene=preload("res://explosion.tscn")
 
-func _ready()->void:
-	 # Can't be deferred or it won't happen.
-	tree_exiting.connect(func()->void:
-		if explosion:
-			var e:=explosion.instantiate() as Node2D
-			if e.top_level:
-				e.global_transform=global_transform
-				get_tree().get_root().add_child.call_deferred(e)
-			else:
-				e.transform=transform
-				get_parent().add_child.call_deferred(e)
-		)
+func _exit_tree():
+	if is_blocking_signals():
+		return
+	if explosion:
+		var e=explosion.instantiate()
+		if e.top_level:
+			e.global_transform=global_transform
+			get_tree().get_root().add_child(e)
+		else:
+			e.transform=transform
+			get_parent().add_child.call_deferred(e)
 
 ## Instance a random animal target.
 static func instance_random()->Target:
