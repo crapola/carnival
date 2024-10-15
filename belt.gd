@@ -3,7 +3,7 @@ extends TargetContainer
 
 ## Belt
 ##
-## The central rows of target.
+## The central rows of targets.
 
 ## Spacing between targets.
 const target_size:float=64
@@ -43,10 +43,7 @@ func _physics_process(delta:float)->void:
 					else:
 						t=Target.instance_random()
 					_add_target(follow,t)
-					# Duck ranking stuff.
-					if t is Duck:
-						(t as Duck).velocity.y*=(speed/100.0)
-						(t as Duck).timer.wait_time=100.0/speed
+					t.apply_rank(rank)
 
 ## Get number of targets currently in the belt.
 func get_target_count()->int:

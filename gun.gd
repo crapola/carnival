@@ -8,8 +8,6 @@ extends Node2D
 ## Emitted when out of ammo for good and game should end.
 signal ammo_depleted
 
-var can_shoot:bool=true
-
 ## Number of bullets left.
 @export var ammo:int=15:
 	set(value):
@@ -38,15 +36,16 @@ func _ready()->void:
 	ammo=ammo
 
 func _input(event:InputEvent)->void:
-	#if event.is_action_pressed("shoot") and _bullet==null:
-	#	_shoot()
 	if event.is_action_pressed("ui_left") or event.is_action_pressed("ui_right"):
 		_mouse=false
 	if event is InputEventMouseMotion:
 		_mouse=true
 
 func _process(delta:float)->void:
-	if Input.is_action_pressed("shoot") and _bullet==null and can_shoot:
+	if Input.is_action_pressed("shoot")\
+		and _bullet==null\
+		and is_processing_input()\
+		and not _animation_player.is_playing():
 		_shoot()
 	if _mouse:
 		_move_using_mouse(delta)
@@ -55,6 +54,10 @@ func _process(delta:float)->void:
 	# Clamp position.
 	var width:=get_viewport_rect().size.x
 	global_position.x=clampf(global_position.x,64,width-64)
+
+## Disable shooting.
+func disable()->void:
+	set_process_input(false)
 
 func _check_loss()->void:
 	if _bullet!=null:

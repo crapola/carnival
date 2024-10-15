@@ -53,8 +53,7 @@ func clear()->void:
 	message.say("Ammo bonus: %d points."%ammo_bonus,5)
 	timer.stop()
 	rank_timer.stop()
-	gun.set_process_input(false)
-	gun.can_shoot=false
+	gun.disable()
 	belt.stop(5.0)
 	wheel.stop(5.0)
 	await get_tree().create_timer(5.5,false,true,false).timeout
@@ -76,8 +75,7 @@ func game_over()->void:
 		s+="\nNew high score!"
 
 	message.say("You ran out of ammo."+s,7)
-	gun.set_process_input(false)
-	gun.can_shoot=false
+	gun.disable()
 	timer.stop()
 	rank_timer.stop()
 	belt.stop(5.0)

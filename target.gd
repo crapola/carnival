@@ -14,17 +14,21 @@ extends Sprite2D
 ## Explosion scene.
 @export var explosion:PackedScene=preload("res://explosion.tscn")
 
-func _exit_tree():
+func _exit_tree()->void:
 	if is_blocking_signals():
 		return
 	if explosion:
-		var e=explosion.instantiate()
+		var e:Node2D=explosion.instantiate() as Node2D
 		if e.top_level:
 			e.global_transform=global_transform
 			get_tree().get_root().add_child(e)
 		else:
 			e.transform=transform
 			get_parent().add_child.call_deferred(e)
+
+## Set difficulty.
+func apply_rank(_rank:float)->void:
+	pass
 
 ## Instance a random animal target.
 static func instance_random()->Target:
